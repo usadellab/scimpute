@@ -1,12 +1,11 @@
 # Imputation of single cell/nucleus gene expression data
 **scimpute** is a Python module for running gene expression imputation for single cell/nucleus RNA sequencing data. It has been developed within the frame of a project investigating development of the barley (*Hordeum vulgare*) shoot meristem, and was first applied in the corresponding publication of [Demesa-Arevalo et al. 2026](https://doi.org/10.1038/s41477-025-02176-6)[^1]. For ease of use, the gene expression imputation method is now available as a python module.
 
-## Table of contents
 - [Imputation of single cell/nucleus gene expression data](#imputation-of-single-cellnucleus-gene-expression-data)
-  - [Table of contents](#table-of-contents)
   - [Installation](#installation)
     - [Dependencies](#dependencies)
     - [User installation](#user-installation)
+    - [Installation verification with demo data](#installation-verification-with-demo-data)
   - [Quickstart](#quickstart)
     - [Input files](#input-files)
     - [Single-command execution](#single-command-execution)
@@ -38,6 +37,33 @@ git clone git@github.com:usadellab/scimpute.git
 cd scimpute
 pip install -e .
 ```
+
+### Installation verification with demo data
+To verify the installation on your machine, a test run with public demo data can be performed. The data (and the provided result data) belongs to the publication of [Demesa-Arevalo et al. 2026](https://doi.org/10.1038/s41477-025-02176-6), and is available at the corresponding data object at at [Dörpholz et al. 2025](https://doi.org/10.60534/zfdth-2g147). To perform a test run of the installation with the demo data, the following python code can be executed, with a replacement of the <output_path> placeholder:
+
+```
+from scimpute import expression_imputation
+from scimpute.utils import download_demo
+
+mtx_to_impute_for, mtx_to_impute_from, cl_identities, cl_name_column_idx = download_demo()
+
+expression_imputation(
+    # required parameters
+    matrix_to_impute_for=mtx_to_impute_for,
+    matrix_to_impute_from=mtx_to_impute_from,
+    cell_identities=cl_identities,
+    cell_name_column_idx=cl_name_column_idx,
+    outdir=<output_path>,
+
+    # optional parameters
+    chunk_size=300,
+    k_neighbors=4,
+    consider_clusters=False,
+    save_chunks=False
+)
+```
+
+The result will be a directory in your specified `outdir` location, containing the five files detailed in the [output files](#output-files) section. You can compare the files you obtained with the demo outputs in the [tests](./tests/) directory of this repo.
 
 ## Quickstart
 ### Input files

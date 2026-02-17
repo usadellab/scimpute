@@ -32,10 +32,18 @@ def read_inputs(
         save_location = os.path.join(os.getcwd(), outdir)
     Path(save_location).mkdir(parents=True, exist_ok=True)
 
-    x = read_matrix(matrix_to_impute_for)
-    y = read_matrix(matrix_to_impute_from)
-
-    clusters = read_cell_identities(cell_identities, index_column=cell_name_column_idx)
+    if isinstance(matrix_to_impute_for, pd.DataFrame):
+        x = matrix_to_impute_for
+    else:
+        x = read_matrix(matrix_to_impute_for)
+    if isinstance(matrix_to_impute_from, pd.DataFrame):
+        y = matrix_to_impute_from
+    else:
+        y = read_matrix(matrix_to_impute_from)
+    if isinstance(cell_identities, pd.DataFrame):
+        clusters = cell_identities
+    else:
+        clusters = read_cell_identities(cell_identities, index_column=cell_name_column_idx)
 
     return (x, y, clusters, Path(save_location))
 
