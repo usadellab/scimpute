@@ -124,7 +124,7 @@ Replace the `<placeholder>` information with paths to your own files.
 
 ##### Optional parameters:
 - `chunk_size`: the number of cells per chunk to impute at a time; this is useful if the dataset is very large or if little RAM is available; default is `1000`
-- `k_neighbors`: number of k nearest neighbors to find between datasets; defaulti is `25`
+- `k_neighbors`: number of k nearest neighbors to find between datasets; default is `25`
 - `consider_clusters`: a flag indicating whether to only identify similar cells between datasets within only the same annotated cluster or within the entire dataset; setting this to `True` will be less resource-intensive, but requires a reliably clustering to correctly identify the most similar cells; default is `True`
 - `save_chunks`: flag indicating whether to keep intermediate results on the disk even after file merging; setting this to `True` is recommended for troubleshooting only; default is `False`
 
