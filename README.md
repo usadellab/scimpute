@@ -39,7 +39,7 @@ pip install -e .
 ```
 
 ### Installation verification with demo data
-To verify the installation on your machine, a test run with public demo data can be performed. The data (and the provided result data) belongs to the publication of [Demesa-Arevalo et al. 2026](https://doi.org/10.1038/s41477-025-02176-6), and is available at the corresponding data object at at [Dörpholz et al. 2025](https://doi.org/10.60534/zfdth-2g147). To perform a test run of the installation with the demo data, the following python code can be executed, with a replacement of the <output_path> placeholder:
+To verify the installation on your machine, a test run with public demo data can be performed. The data (and the provided result data) belongs to the publication of [Demesa-Arevalo et al. 2026](https://doi.org/10.1038/s41477-025-02176-6), and is available at the corresponding data object at at [Dörpholz et al. 2025](https://doi.org/10.60534/zfdth-2g147). To perform a test run of the installation with the demo data, the following python code can be executed, with a replacement of the `<output_path>` placeholder:
 
 ```
 from scimpute import expression_imputation
@@ -113,6 +113,8 @@ expression_imputation(
 Replace the `<placeholder>` information with paths to your own files.
 
 #### Parameters
+:exclamation: On Windows, make sure that all slashes in your file paths are masked using another slash: e.g. `C:\User\Downloads` must be re-formatted to `C:\\User\\Downloads`.
+
 ##### Required parameters
 - `matrix_to_impute_for`: enter the path to the gene expression matrix (in quotation marks) you want to perform the gene expression for (like a matrix from a spatial transcriptomics experiment with only few genes)
 - `matrix_to_impute_from`: enter the path to the gene expression matrix (in quotation marks) you want to use as a reference to impute the gene expression from (likely a matrix from a single cell/nucleus RNAseq experiment with many genes)
